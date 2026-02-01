@@ -1,3 +1,5 @@
+https://beautyuu.github.io/taropie/
+
 一个用于在线抽塔罗牌 / 牌阵解读的网页应用，支持多种经典与扩展牌阵。项目由 Google AI Studio 生成/辅助生成（包含页面结构、交互逻辑与部分文案），并在此基础上进行了整理与完善。
 
 ✨ 功能 Features
