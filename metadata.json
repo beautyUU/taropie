@@ -1,0 +1,5 @@
+{
+  "name": "香芋派",
+  "description": "一个纯前端离线的塔罗抽牌应用，支持多种牌阵、随机正逆位，并提供深度的合读分析，完全不依赖外部API。",
+  "requestFramePermissions": []
+}

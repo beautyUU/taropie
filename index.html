@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unseen Archive - Academic Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Warm Charcoal Palette */
+            --bg: #0B0A09;
+            --bg-2: #12110F;
+            --surface: #191714;
+            --surface-2: #211E1A;
+            --surface-3: #2A2621;
+            --ink: #F6EAD3;
+            --ink-dim: #DCD0B8;
+            --muted: #C2AE90;
+            --faint: #9B8A73;
+            --line: rgba(246, 234, 211, 0.15);
+            --line-strong: rgba(246, 234, 211, 0.28);
+            --brass: #D6B36A;
+            --brass-soft: rgba(214, 179, 106, 0.12);
+            --verdigris: #2F7F6B;
+            
+            /* Responsive Giant Typography */
+            --h1: clamp(38px, 4vw, 48px);
+            --h2: clamp(28px, 2.8vw, 34px);
+            --h3: clamp(20px, 2vw, 24px);
+            --body: clamp(19px, 1.8vw, 21px);
+            --insight: clamp(21px, 2.2vw, 23px);
+            --caption: 15px;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: var(--bg);
+            color: var(--ink);
+            line-height: 1.90;
+            margin: 0;
+            min-height: 100vh;
+            /* 烛光晕染 + 星图刻度水印 (4% 极低透明度) */
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(214, 179, 106, 0.05) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23F6EAD3' stroke-width='0.5' stroke-opacity='0.04'%3E%3Ccircle cx='400' cy='400' r='350'/%3E%3Ccircle cx='400' cy='400' r='200'/%3E%3Cpath d='M400 0 V800 M0 400 H800 M117 117 L683 683 M117 683 L683 117'/%3E%3C/g%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-cinzel { font-family: 'Cinzel', serif; }
+
+        .app-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* 学院派卡片样式：自带角花 */
+        .academic-card {
+            background-color: var(--surface);
+            border: 1px solid var(--line);
+            padding: clamp(24px, 3vw, 32px);
+            position: relative;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+            border-radius: 2px;
+        }
+        .academic-card::before, .academic-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--line-strong);
+            pointer-events: none;
+        }
+        .academic-card::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+        .academic-card::after { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+
+        /* 学院派分割线 */
+        .divider-alchemy {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0;
+            opacity: 0.6;
+        }
+        .divider-alchemy::before, .divider-alchemy::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--line-strong), transparent);
+        }
+        .alchemy-sigil {
+            font-size: 14px;
+            color: var(--brass);
+            letter-spacing: 0.2em;
+        }
+
+        .btn-primary {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            background: var(--brass-soft);
+            border: 1px solid var(--brass);
+            color: var(--brass);
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-primary:hover {
+            background: var(--brass);
+            color: var(--bg);
+            box-shadow: 0 0 25px var(--brass-soft);
+        }
+
+        /* Chip 样式放大 */
+        .keyword-chip {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line-strong);
+            background: var(--surface-3);
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        p { margin-bottom: 1.8rem; }
+        ::selection { background: var(--brass); color: var(--bg); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
