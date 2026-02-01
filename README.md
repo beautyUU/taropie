@@ -1,20 +1,7 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/1ZpnY5DC44HC4sDM5rSHvxmqROlUGqKjy
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+一个用于在线抽塔罗牌 / 牌阵解读的网页应用，支持多种经典与扩展牌阵。项目由 Google AI Studio 生成/辅助生成（包含页面结构、交互逻辑与部分文案），并在此基础上进行了整理与完善。
+✨ 功能 Features
+🃏 抽牌：支持随机抽取塔罗牌（可扩展正/逆位逻辑）
+🧩 多牌阵：内置多种牌阵，一键选择并抽取对应数量的牌
+🖼️ 展示清晰：按牌阵位置展示抽到的牌与含义（可配置）
+🔁 重抽/重置：支持重新抽牌、清空当前牌阵
+📱 响应式：适配手机与桌面端（取决于你的实现）
